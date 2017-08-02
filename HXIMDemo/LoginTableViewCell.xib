@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="304" id="KGk-i7-Jjw" customClass="LoginTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="304"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="303.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1O-Ji-9qj">
+                        <rect key="frame" x="0.0" y="92" width="364" height="120"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="yXs-2K-pGh"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uta-Xd-smh">
+                        <rect key="frame" x="184" y="220" width="81" height="30"/>
+                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" title="登 录">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="loginAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FdJ-6E-heF"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjG-yx-JtJ">
+                        <rect key="frame" x="273" y="220" width="81" height="30"/>
+                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="T3g-1c-9IW"/>
+                            <constraint firstAttribute="width" constant="81" id="eCo-hm-e2q"/>
+                        </constraints>
+                        <state key="normal" title="注 册">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="registAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uS4-j6-hj7"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NjG-yx-JtJ" firstAttribute="height" secondItem="uta-Xd-smh" secondAttribute="height" id="APU-S7-LGm"/>
+                    <constraint firstItem="NjG-yx-JtJ" firstAttribute="leading" secondItem="uta-Xd-smh" secondAttribute="trailing" constant="8" id="DBx-yl-7tp"/>
+                    <constraint firstAttribute="trailing" secondItem="NjG-yx-JtJ" secondAttribute="trailing" constant="10" id="cKb-wj-Dgk"/>
+                    <constraint firstItem="NjG-yx-JtJ" firstAttribute="width" secondItem="uta-Xd-smh" secondAttribute="width" id="k54-o2-nJF"/>
+                    <constraint firstItem="B1O-Ji-9qj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oRa-PE-R9Z"/>
+                    <constraint firstItem="B1O-Ji-9qj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rLD-vE-Uxi"/>
+                    <constraint firstAttribute="trailing" secondItem="B1O-Ji-9qj" secondAttribute="trailing" id="vlm-2t-5OG"/>
+                    <constraint firstItem="NjG-yx-JtJ" firstAttribute="centerY" secondItem="uta-Xd-smh" secondAttribute="centerY" id="wk7-gb-AXE"/>
+                    <constraint firstItem="NjG-yx-JtJ" firstAttribute="top" secondItem="B1O-Ji-9qj" secondAttribute="bottom" constant="8" id="yeN-K5-Xnc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="tempView" destination="B1O-Ji-9qj" id="Yu6-9c-ZD1"/>
+            </connections>
+            <point key="canvasLocation" x="56" y="184"/>
+        </tableViewCell>
+    </objects>
+</document>

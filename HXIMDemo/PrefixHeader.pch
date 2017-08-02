@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  HXIMDemo
+//
+//  Created by BillBo on 2017/7/28.
+//  Copyright © 2017年 BillBo. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "ConfigurationFile.h"
+#import "UITableView+HitTest.h"
+#import "CodeConfi.h"
+#import <HyphenateLite/HyphenateLite.h>
+#import "HXManagerHelper.h"
+
+#endif /* PrefixHeader_pch */
