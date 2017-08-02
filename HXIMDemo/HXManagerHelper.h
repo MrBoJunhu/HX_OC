@@ -19,9 +19,19 @@ typedef void(^registFaile)(NSString *errorDescription, EMErrorCode errorCode);
 typedef void(^loginSuccess)(NSString * responseData);
 typedef void(^loginFaile)(NSString *errorDescription, EMErrorCode errorCode);
 
+
+typedef void(^logoutSuccess)();
+typedef void(^logoutFaile)(NSString *erroeDescription);
+
 @interface HXManagerHelper : NSObject
 
 @property (nonatomic, strong) EMClient *emClient;
+
+@property (nonatomic, strong) EaseSDKHelper *SDKHelper;
+
+@property (nonatomic, copy) NSString *managerHXAppKey;
+
+@property (nonatomic, copy) NSString *managerHXCerName;
 
 +(instancetype)shareHXManagerHelper;
 
@@ -50,5 +60,8 @@ typedef void(^loginFaile)(NSString *errorDescription, EMErrorCode errorCode);
  @param faile faile description
  */
 - (void)loginHXServiceWithUsername:(NSString *)username password:(NSString *)password loginSuccess:(loginSuccess)success loginFaile:(loginFaile)faile;
+
+
+- (void)existHXServiceSuccess:(logoutSuccess)success faile:(logoutSuccess)faile;
 
 @end

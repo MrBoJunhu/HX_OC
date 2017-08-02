@@ -16,6 +16,12 @@
 @property (nonatomic, copy) loginSuccess loginSuccessBlock;
 @property (nonatomic, copy) loginFaile loginFaileBlock;
 
+
+@property (nonatomic, copy) logoutSuccess logoutSuccessBlock;
+@property (nonatomic, copy) logoutFaile logoutFaileBlock;
+
+
+
 @property (nonatomic, assign) HXServiceType hxServiceType;
 
 @end
@@ -45,6 +51,15 @@
     return _emClient;
 }
 
+- (EaseSDKHelper *)SDKHelper{
+    
+    if (!_SDKHelper) {
+        self.SDKHelper = [EaseSDKHelper shareHelper];
+    }
+    
+    return _SDKHelper;
+}
+
 - (void)cofigurateLocalHXService {
     
     NSString *hxAppKey = @"";
@@ -61,6 +76,10 @@
         hxAPSCertName = HXCer_Name_dis;
     }
    
+    self.managerHXAppKey = hxAppKey;
+    
+    self.managerHXCerName = hxAPSCertName;
+    
     EMOptions *options = [EMOptions optionsWithAppkey:HXApp_Key_dev];
     
     [self.emClient initializeSDKWithOptions:options];
@@ -81,7 +100,7 @@
         if (!aError) {
         
             DebugLog(@"注册成功!");
-            weakself.loginSuccessBlock(aUsername);
+            weakself.registSuccessBlock(aUsername);
             
         }else{
            
@@ -108,13 +127,18 @@
         if (!aError) {
            
             DebugLog(@"登陆成功!");
+            //SDK 中自动登录属性默认是关闭的，需要您在登录成功后设置，以便您在下次 APP 启动时不需要再次调用环信登录，并且能在没有网的情况下得到会话列表。
+            [weakself.emClient.options  setIsAutoLogin:YES];
+           
+            //控制台是否输出log, 默认为NO
+            [weakself.emClient.options enableConsoleLog];
+
             weakself.loginSuccessBlock(username);
             
         }else{
             DebugLog(@"登陆失败!");
             DebugLog(@"%@ \n %d", aError.errorDescription, aError.code)
             weakself.loginFaileBlock(aError.errorDescription, aError.code);
-        
             
         }
         
@@ -122,4 +146,32 @@
     
 }
 
+- (void)existHXServiceSuccess:(logoutSuccess)success faile:(logoutSuccess)faile{
+    
+    self.logoutSuccessBlock = success;
+    
+    self.logoutFaileBlock = faile;
+    
+    @weakself(self);
+    
+    [self.emClient logout:YES completion:^(EMError *aError) {
+        
+        if (!aError) {
+            
+            DebugLog(@"退出登录成功!");
+            
+            weakself.logoutSuccessBlock();
+        
+        }else{
+            
+            DebugLog(@"退出登录失败 : %@", aError.errorDescription);
+            
+            weakself.logoutFaileBlock(aError.errorDescription);
+            
+        }
+        
+    }];
+
+    
+}
 @end

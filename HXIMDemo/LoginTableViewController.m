@@ -9,6 +9,8 @@
 #import "LoginTableViewController.h"
 #import "LoginTableViewCell.h"
 #import "RegistTableViewController.h"
+#import "HomeTabBarController.h"
+
 @interface LoginTableViewController ()
 
 @end
@@ -60,12 +62,19 @@
     [loginCell clickLogin:^(NSString *card, NSString *password) {
         
         DebugLog(@"card: %@,password :  %@", card, password);
+       
         [[HXManagerHelper shareHXManagerHelper] loginHXServiceWithUsername:card password:password loginSuccess:^(NSString *responseData) {
+        
+            HomeTabBarController *homeTab = [[HomeTabBarController alloc] init];
+            
+            [weakself.navigationController pushViewController:homeTab animated:YES];
             
         } loginFaile:^(NSString *errorDescription, EMErrorCode errorCode) {
             
+            
+            
         }];
-        
+    
     } clickRegist:^{
         
         RegistTableViewController *registVC= [[RegistTableViewController alloc] init];

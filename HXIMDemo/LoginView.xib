@@ -30,6 +30,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRb-2s-f6e">
                             <rect key="frame" x="0.0" y="75" width="40" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="密码">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>

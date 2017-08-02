@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^clickRegistBlock)(NSString *card, NSString *password);
+
 @interface RegistTableViewCell : UITableViewCell
+
+- (void)clickRegist:(clickRegistBlock)regist;
+
 
 @end

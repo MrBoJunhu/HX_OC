@@ -7,7 +7,7 @@
 //
 
 #import "RegistTableViewController.h"
-
+#import "RegistTableViewCell.h"
 @interface RegistTableViewController ()
 
 @end
@@ -15,42 +15,73 @@
 @implementation RegistTableViewController
 
 - (void)viewDidLoad {
+  
     [super viewDidLoad];
+
+    self.navigationItem.title = @"注册";
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+     self.clearsSelectionOnViewWillAppear = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 1;
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    return 1;
+    
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
+    static NSString *registCellIdentifier = @"RegistTableViewCell";
+    
+    RegistTableViewCell *registCell = [tableView dequeueReusableCellWithIdentifier:registCellIdentifier];
+    
+    if (!registCell) {
+        
+        registCell = [[NSBundle mainBundle] loadNibNamed:registCellIdentifier owner:self options:nil].firstObject;
+        
+        [tableView registerNib:[UINib nibWithNibName:registCellIdentifier bundle:nil] forCellReuseIdentifier:registCellIdentifier ];
+    }
+    
+    [registCell clickRegist:^(NSString *card, NSString *password) {
+       
+        [[HXManagerHelper shareHXManagerHelper] registHXServiceWithUsername:card password:password registSuccess:^(NSString *responseData) {
+            
+            
+            
+        } registFaile:^(NSString *errorDescription, EMErrorCode errorCode) {
+            
+            
+            
+        }];
+        
+    }];
+    
+    return registCell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CGFloat screen_Height = [UIScreen mainScreen].bounds.size.height;
+    
+    return screen_Height - 200;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

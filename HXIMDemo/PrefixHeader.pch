@@ -5,14 +5,30 @@
 //  Created by BillBo on 2017/7/28.
 //  Copyright © 2017年 BillBo. All rights reserved.
 //
+#ifdef __OBJC__
+
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-#import "ConfigurationFile.h"
+//类目
+#import "BasicViewController.h"
+#import "BasicTabBarController.h"
 #import "UITableView+HitTest.h"
+
+#import "ConfigurationFile.h"
+#import "Colors.h"
 #import "CodeConfi.h"
+
 #import <HyphenateLite/HyphenateLite.h>
+#import "EaseUI.h"
+#import <SDWebImageManager.h>
+#import <MJRefresh.h>
+#import "UIImage+Resource.h"
+
 #import "HXManagerHelper.h"
 
+
 #endif /* PrefixHeader_pch */
+
+#endif
