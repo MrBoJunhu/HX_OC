@@ -83,6 +83,8 @@
 		A580BD971F2AC4020050F3E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A580BD951F2AC4020050F3E2 /* LaunchScreen.storyboard */; };
 		A580BDA21F2AC4020050F3E2 /* HXIMDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A580BDA11F2AC4020050F3E2 /* HXIMDemoTests.m */; };
 		A580BDAD1F2AC4020050F3E2 /* HXIMDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A580BDAC1F2AC4020050F3E2 /* HXIMDemoUITests.m */; };
+		A5A2C6751F3836C30011FD18 /* AlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C6741F3836C30011FD18 /* AlertManager.m */; };
+		A5A2C6791F3840910011FD18 /* AddNewFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C6781F3840910011FD18 /* AddNewFriendViewController.m */; };
 		A5C60BEF1F315CA100FD65D0 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C60BEE1F315CA100FD65D0 /* LoginView.m */; };
 		A5C60BF11F315CAA00FD65D0 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5C60BF01F315CAA00FD65D0 /* LoginView.xib */; };
 		A5C60BF61F31617400FD65D0 /* LoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C60BF41F31617400FD65D0 /* LoginTableViewCell.m */; };
@@ -297,6 +299,10 @@
 		A580BDAE1F2AC4020050F3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A580BDBA1F2ACE6B0050F3E2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A580BDBB1F2ACE7F0050F3E2 /* ConfigurationFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigurationFile.h; sourceTree = "<group>"; };
+		A5A2C6731F3836C30011FD18 /* AlertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertManager.h; sourceTree = "<group>"; };
+		A5A2C6741F3836C30011FD18 /* AlertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertManager.m; sourceTree = "<group>"; };
+		A5A2C6771F3840910011FD18 /* AddNewFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewFriendViewController.h; sourceTree = "<group>"; };
+		A5A2C6781F3840910011FD18 /* AddNewFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewFriendViewController.m; sourceTree = "<group>"; };
 		A5C60BED1F315CA100FD65D0 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		A5C60BEE1F315CA100FD65D0 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		A5C60BF01F315CAA00FD65D0 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
@@ -850,6 +856,8 @@
 				A5C60BFB1F3162A900FD65D0 /* LoginTableViewController.m */,
 				A5C60C021F316D7200FD65D0 /* RegistTableViewController.h */,
 				A5C60C031F316D7200FD65D0 /* RegistTableViewController.m */,
+				A5A2C6771F3840910011FD18 /* AddNewFriendViewController.h */,
+				A5A2C6781F3840910011FD18 /* AddNewFriendViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -874,6 +882,8 @@
 		A5C60C0B1F3176CA00FD65D0 /* ManagerHelper */ = {
 			isa = PBXGroup;
 			children = (
+				A5A2C6731F3836C30011FD18 /* AlertManager.h */,
+				A5A2C6741F3836C30011FD18 /* AlertManager.m */,
 				A5C60C0C1F3176E900FD65D0 /* HXManagerHelper.h */,
 				A5C60C0D1F3176E900FD65D0 /* HXManagerHelper.m */,
 			);
@@ -1101,6 +1111,7 @@
 				A53E14E91F31B2AD0083E06F /* EMCDDeviceManager+Remind.m in Sources */,
 				A580BD8F1F2AC4020050F3E2 /* ViewController.m in Sources */,
 				A5C60C0E1F3176E900FD65D0 /* HXManagerHelper.m in Sources */,
+				A5A2C6791F3840910011FD18 /* AddNewFriendViewController.m in Sources */,
 				A5398FA11F319776002D1DB9 /* ChatTableViewController.m in Sources */,
 				A5C60BFC1F3162A900FD65D0 /* LoginTableViewController.m in Sources */,
 				A5398FB41F319DCD002D1DB9 /* MineTableViewController.m in Sources */,
@@ -1164,6 +1175,7 @@
 				A5C60BF61F31617400FD65D0 /* LoginTableViewCell.m in Sources */,
 				A53E14F21F31B2AD0083E06F /* EaseMessageModel.m in Sources */,
 				A5C60C121F317C3600FD65D0 /* RegistTableViewCell.m in Sources */,
+				A5A2C6751F3836C30011FD18 /* AlertManager.m in Sources */,
 				A53E14F11F31B2AD0083E06F /* EaseConversationModel.m in Sources */,
 				A53E15021F31B2AD0083E06F /* EaseConversationListViewController.m in Sources */,
 			);

@@ -19,6 +19,7 @@
 #import "ConfigurationFile.h"
 #import "Colors.h"
 #import "CodeConfi.h"
+#import "AlertManager.h"
 
 #import <HyphenateLite/HyphenateLite.h>
 #import "EaseUI.h"

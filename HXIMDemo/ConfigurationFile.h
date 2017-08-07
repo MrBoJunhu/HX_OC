@@ -23,4 +23,22 @@
 #define HXCer_Name_dis @"HXIMDemo_dis"
 
 
+
+#define TipTitle @"温馨提示"
+
+#define OKTitle @"确定"
+
+#define LoginAgainTip @"重新登录"
+
+#define CancelTip @"取消"
+
+
+//通知中心
+
+#define HXConnectStateChanged @"hx_connectStateChanged"
+
+#define HXDidRecivedNewMessage @"hx_receiveNewMessage"
+
+
+
 #endif /* ConfigurationFile_h */

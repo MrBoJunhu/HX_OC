@@ -8,7 +8,9 @@
 
 #import "HXManagerHelper.h"
 
-@interface HXManagerHelper()
+#import "LoginTableViewController.h"
+
+@interface HXManagerHelper()<EMClientDelegate,EMChatManagerDelegate, EMContactManagerDelegate>
 
 @property (nonatomic, copy) registSuccess registSuccessBlock;
 @property (nonatomic, copy) registFaile registFaileBlock;
@@ -21,6 +23,16 @@
 @property (nonatomic, copy) logoutFaile logoutFaileBlock;
 
 
+@property (nonatomic, copy) sendAddNewsSuccess sendAddSuccessBlock;
+@property (nonatomic, copy) sendAddNewsFaile sendAddFaileBlock;
+
+
+@property (nonatomic, copy) completeSuccess successBlock;
+@property (nonatomic, copy) completeFaile faileBlock;
+
+
+
+@property (nonatomic, copy) contactsListBlock contactsListBlock;
 
 @property (nonatomic, assign) HXServiceType hxServiceType;
 
@@ -83,6 +95,18 @@
     EMOptions *options = [EMOptions optionsWithAppkey:HXApp_Key_dev];
     
     [self.emClient initializeSDKWithOptions:options];
+    
+    
+    //添加回调监听代理
+    [self.emClient addDelegate:self delegateQueue:nil];
+    
+    //注册消息回调 EMChatManagerDelegate
+    [self.emClient.chatManager addDelegate:self delegateQueue:nil];
+
+    
+    
+    //添加好友回调
+    [self.emClient.contactManager addDelegate:self delegateQueue:nil];
     
 }
 
@@ -174,4 +198,303 @@
 
     
 }
+
+- (void)addNewFriendWithUsername:(NSString *)username success:(sendAddNewsSuccess)success faile:(sendAddNewsFaile)faile {
+    
+    self.sendAddSuccessBlock = success;
+    
+    self.sendAddFaileBlock = faile;
+    
+    @weakself(self);
+    
+    [self.emClient.contactManager addContact:username message:[NSString stringWithFormat:@" %@ ,你好, 我是%@, 我可以添加你为好友么", username, self.emClient.currentUsername] completion:^(NSString *aUsername, EMError *aError) {
+       
+        if (!aError) {
+            DebugLog(@"发送添加好友请求成功!");
+            weakself.sendAddSuccessBlock();
+        }else{
+            DebugLog(@"发送添加好友请求失败!\n aError.errorDescription : %@ ", aError.errorDescription);
+            weakself.sendAddFaileBlock(aError.errorDescription, aError.code);
+        }
+        
+    }];
+}
+
+- (void)agreeAddNewFriendWithUsername:(NSString *)username success:(completeSuccess)success faile:(completeFaile)faile{
+    
+    self.successBlock = success;
+    
+    self.faileBlock = faile;
+    
+    @weakself(self);
+    
+    [self.emClient.contactManager approveFriendRequestFromUser:username completion:^(NSString *aUsername, EMError *aError) {
+       
+        if (!aError) {
+            DebugLog(@"同意添加好友成功");
+            weakself.successBlock();
+            
+        }else{
+            DebugLog(@"同意添加好友失败");
+
+            weakself.faileBlock(aError.errorDescription, aError.code);
+        }
+        
+    }];
+}
+
+- (void)disagreeAddNewFriendWithUsername:(NSString *)username success:(completeSuccess)success faile:(completeFaile)faile {
+    
+    self.successBlock = success;
+    
+    self.faileBlock = faile;
+    
+    
+    @weakself(self);
+    
+    [self.emClient.contactManager declineFriendRequestFromUser:username completion:^(NSString *aUsername, EMError *aError) {
+    
+        if (!aError) {
+            DebugLog(@"拒绝添加好友成功");
+
+            weakself.successBlock();
+        }else{
+            DebugLog(@"拒绝添加好友失败");
+            weakself.faileBlock(aError.errorDescription, aError.code);
+        }
+        
+    }];
+    
+}
+
+- (void)deleteFriendWithUsername:(NSString *)username success:(completeSuccess)success faile:(completeFaile)faile{
+    
+    self.successBlock = success;
+    
+    self.faileBlock = faile;
+    
+    @weakself(self);
+    
+    [self.emClient.contactManager deleteContact:username isDeleteConversation:YES completion:^(NSString *aUsername, EMError *aError) {
+        
+        if (!aError) {
+            DebugLog(@"删除好友成功");
+            weakself.successBlock();
+        }else{
+            DebugLog(@"删除好友失败");
+
+            weakself.faileBlock(aError.errorDescription, aError.code);
+        }
+        
+    }];
+}
+
+- (void)getContactsListFromService:(contactsListBlock)contactsList faile:(completeFaile)faile{
+    
+    self.contactsListBlock = contactsList;
+    self.faileBlock = faile;
+    
+    @weakself(self);
+    
+    [self.emClient.contactManager getContactsFromServerWithCompletion:^(NSArray *aList, EMError *aError) {
+       
+        if (!aError) {
+            DebugLog(@"获取好友列表成功!");
+            weakself.contactsListBlock(aList);
+        }else{
+            DebugLog(@"获取好友列表失败");
+            weakself.faileBlock(aError.errorDescription, aError.code);
+        }
+        
+    }];
+    
+    //获取本地存储的所有好友
+//    [self.emClient.contactManager getContacts];
+    
+}
+
+- (void)deleteChatWithConversationId:(NSString *)ConversationId success:(completeSuccess)success  faile:(completeFaile)faile {
+    
+    self.successBlock = success;
+    
+    self.faileBlock = faile;
+    
+    @weakself(self);
+    
+    [self.emClient.chatManager deleteConversation:ConversationId isDeleteMessages:YES completion:^(NSString *aConversationId, EMError *aError) {
+        
+        if (!aError) {
+        
+            weakself.successBlock();
+      
+        }else{
+            
+            weakself.faileBlock(aError.errorDescription, aError.code);
+            
+        }
+        
+    }];
+    
+}
+
+
+
+
+
+#pragma mark - EMClientDelegate 
+
+/*!
+
+ *  SDK连接服务器的状态变化时会接收到该回调
+ *
+ *  有以下几种情况, 会引起该方法的调用:
+ *  1. 登录成功后, 手机无法上网时, 会调用该回调
+ *  2. 登录成功后, 网络状态变化时, 会调用该回调
+ *
+ *  @param aConnectionState 当前状态
+ *
+ *  \~english
+ *  Invoked when server connection state has changed
+ *
+ *  @param aConnectionState Current state
+ */
+- (void)connectionStateDidChange:(EMConnectionState)aConnectionState{
+    
+    if (aConnectionState == EMConnectionConnected) {
+    
+        DebugLog(@"已连接");
+        self.isConnectingHXService = YES;
+
+    }else if (aConnectionState == EMConnectionDisconnected){
+    
+        DebugLog(@"未连接");
+        self.isConnectingHXService = NO;
+        
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:HXConnectStateChanged object:nil];
+    
+}
+
+
+/*!
+ *  \~chinese
+ *  自动登录完成时的回调
+ *
+ *  @param aError 错误信息
+ *
+ *  \~english
+ *  Invoked when auto login is completed
+ *
+ */
+- (void)autoLoginDidCompleteWithError:(EMError *)aError{
+    
+    if (aError == nil) {
+    
+        DebugLog(@"自动登录成功!");
+    
+    }else{
+    
+        DebugLog(@"自动登录失败!");
+    
+    }
+
+}
+
+#pragma mark - 当前登录账号在其它设备登录时会接收到该回调
+
+- (void)userAccountDidLoginFromOtherDevice{
+    
+    DebugLog(@"当前登录账号在其它设备登录,请重新登录!");
+    @weakself(self);
+    
+    [AlertManager showAlertMessagerWithController:[UIApplication sharedApplication].keyWindow.rootViewController Title:TipTitle content:@"当前登录账号在其它设备登录,请重新登录!" okTitle:LoginAgainTip cancelTitle:CancelTip alertType:One_AlertActionType clickOk:^{
+        
+        [weakself existHXServiceSuccess:^{
+            
+            [weakself jumpToLoginController];
+
+        } faile:^{
+            
+        }];
+        
+    } cancel:^{
+        
+    }];
+}
+
+#pragma mark - 当前登录账号已经被从服务器端删除时会收到该回调
+
+- (void)userAccountDidRemoveFromServer{
+    
+    DebugLog(@"当前登录账号已经被从服务器端删除时会收到该回调");
+    
+    @weakself(self);
+   
+    [AlertManager showAlertMessagerWithController:[UIApplication sharedApplication].keyWindow.rootViewController Title:TipTitle content:@"当前登录账号已经被从服务器端删除时会收到该回调" okTitle:LoginAgainTip cancelTitle:CancelTip alertType:One_AlertActionType clickOk:^{
+       
+        [weakself existHXServiceSuccess:^{
+            
+            [weakself jumpToLoginController];
+            
+        } faile:^{
+            
+        }];
+        
+    } cancel:^{
+        
+    }];
+    
+}
+
+#pragma mark - EMContactManagerDelegate
+
+/*!
+ *  用户A发送加用户B为好友的申请，用户B会收到这个回调
+ *
+ *  @param aUsername   用户名
+ *  @param aMessage    附属信息
+ */
+- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
+                                message:(NSString *)aMessage{
+    
+    DebugLog(@"收到添加好友的申请消息 %@", aMessage);
+    
+    
+}
+
+
+#pragma mark - EMChatManagerDelegate
+
+//在线普通消息会走以下回调
+/*!
+ @method
+ @brief 接收到一条及以上非cmd消息
+ */
+- (void)messagesDidReceive:(NSArray *)aMessage {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:HXDidRecivedNewMessage object:nil];
+    
+}
+
+
+- (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages {
+    
+    
+}
+
+
+#pragma mark - 返回登录页面
+
+- (void)jumpToLoginController {
+    
+    LoginTableViewController *loginVC = [[LoginTableViewController alloc] init];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+
+}
+
+
 @end

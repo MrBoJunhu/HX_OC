@@ -53,7 +53,16 @@
     
     self.dataSource = self;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reladNewMessage) name:HXDidRecivedNewMessage object:nil];
+    
 }
+
+- (void)reladNewMessage {
+
+    [self.tableView reloadData];
+    
+}
+
 
 
 - (void)tableViewDidTriggerFooterRefresh{
@@ -175,5 +184,15 @@
 //
 //}
 
+
+
+
+
+
+
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:HXDidRecivedNewMessage object:nil];
+}
 
 @end

@@ -8,7 +8,11 @@
 
 #import "MailListTableViewController.h"
 
+#import "AddNewFriendViewController.h"
+
 @interface MailListTableViewController ()
+
+
 
 @end
 
@@ -20,9 +24,24 @@
     
     self.title = @"通讯录";
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewFriends)];
+    
+    
+    
 }
 
+- (void)addNewFriends {
+    
+    AddNewFriendViewController *addVC = [[AddNewFriendViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:addVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
+  
     [super didReceiveMemoryWarning];
 
 }

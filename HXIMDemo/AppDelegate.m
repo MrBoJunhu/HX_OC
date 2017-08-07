@@ -1,4 +1,5 @@
 //
+
 //  AppDelegate.m
 //  HXIMDemo
 //
@@ -95,6 +96,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 
+    
 }
 
 
