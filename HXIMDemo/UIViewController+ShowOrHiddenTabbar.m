@@ -28,7 +28,7 @@
     
 }
 
-- (void)hiddenTabbar:(UIViewController *)vc{
+- (void)hiddenTabbar{
     
     if (self.tabBarController.tabBar.hidden == YES) {
         
@@ -50,14 +50,14 @@
         
         contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y, contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
         
-        vc.tabBarController.tabBar.hidden = YES;
+        self.tabBarController.tabBar.hidden = YES;
    
     }
     
 }
 
 
-- (void)showTabbar:(UIViewController *)vc{
+- (void)showTabbar{
     
     if (self.tabBarController.tabBar.hidden == NO) {
     
@@ -77,7 +77,7 @@
        
             contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height);
         
-            vc.tabBarController.tabBar.hidden = NO;
+            self.tabBarController.tabBar.hidden = NO;
         
         }
    

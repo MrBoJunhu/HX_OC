@@ -38,6 +38,8 @@
     
     [super viewWillAppear:animated];
     
+    [self hiddenTabbar];
+    
     [self.tableView reloadData];
     
 }

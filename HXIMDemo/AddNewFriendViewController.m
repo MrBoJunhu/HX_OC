@@ -18,6 +18,7 @@
     
     [super viewWillAppear:animated];
     
+    [self hiddenTabbar];
 }
 
 - (void)viewDidLoad {
