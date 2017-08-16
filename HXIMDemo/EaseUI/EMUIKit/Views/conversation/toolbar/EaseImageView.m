@@ -75,7 +75,7 @@
         
         _imageView = [[UIImageView alloc] init];
         _imageView.translatesAutoresizingMaskIntoConstraints = NO;
-        _imageView.layer.cornerRadius = 20;
+        _imageView.layer.cornerRadius = _imageCornerRadius;
         _imageView.clipsToBounds = YES;
         _imageView.backgroundColor = [UIColor grayColor];
         [self addSubview:_imageView];

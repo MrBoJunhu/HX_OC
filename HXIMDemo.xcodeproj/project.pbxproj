@@ -83,8 +83,15 @@
 		A580BD971F2AC4020050F3E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A580BD951F2AC4020050F3E2 /* LaunchScreen.storyboard */; };
 		A580BDA21F2AC4020050F3E2 /* HXIMDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A580BDA11F2AC4020050F3E2 /* HXIMDemoTests.m */; };
 		A580BDAD1F2AC4020050F3E2 /* HXIMDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A580BDAC1F2AC4020050F3E2 /* HXIMDemoUITests.m */; };
+		A5959A1F1F39BBBA00916570 /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5959A1E1F39BBBA00916570 /* ChatDetailViewController.m */; };
+		A5959A681F3BF8D300916570 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5959A671F3BF8D300916570 /* UserNotifications.framework */; };
 		A5A2C6751F3836C30011FD18 /* AlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C6741F3836C30011FD18 /* AlertManager.m */; };
 		A5A2C6791F3840910011FD18 /* AddNewFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C6781F3840910011FD18 /* AddNewFriendViewController.m */; };
+		A5A2C67F1F394C670011FD18 /* NewMsgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C67E1F394C670011FD18 /* NewMsgTableViewController.m */; };
+		A5A2C6881F3951210011FD18 /* MsgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C6861F3951210011FD18 /* MsgTableViewCell.m */; };
+		A5A2C6891F3951210011FD18 /* MsgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5A2C6871F3951210011FD18 /* MsgTableViewCell.xib */; };
+		A5A2C68C1F3952B90011FD18 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C68B1F3952B90011FD18 /* TestViewController.m */; };
+		A5B1449C1F4134230084D86F /* UIViewController+ShowOrHiddenTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B1449B1F4134230084D86F /* UIViewController+ShowOrHiddenTabbar.m */; };
 		A5C60BEF1F315CA100FD65D0 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C60BEE1F315CA100FD65D0 /* LoginView.m */; };
 		A5C60BF11F315CAA00FD65D0 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5C60BF01F315CAA00FD65D0 /* LoginView.xib */; };
 		A5C60BF61F31617400FD65D0 /* LoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C60BF41F31617400FD65D0 /* LoginTableViewCell.m */; };
@@ -98,8 +105,6 @@
 		A5C60C0E1F3176E900FD65D0 /* HXManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C60C0D1F3176E900FD65D0 /* HXManagerHelper.m */; };
 		A5C60C121F317C3600FD65D0 /* RegistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C60C101F317C3600FD65D0 /* RegistTableViewCell.m */; };
 		A5C60C131F317C3600FD65D0 /* RegistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5C60C111F317C3600FD65D0 /* RegistTableViewCell.xib */; };
-		A5EE19B31F31CBCC00A4C0B4 /* ChatListCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EE19B11F31CBCC00A4C0B4 /* ChatListCustomCell.m */; };
-		A5EE19B41F31CBCC00A4C0B4 /* ChatListCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE19B21F31CBCC00A4C0B4 /* ChatListCustomCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,10 +304,23 @@
 		A580BDAE1F2AC4020050F3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A580BDBA1F2ACE6B0050F3E2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A580BDBB1F2ACE7F0050F3E2 /* ConfigurationFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigurationFile.h; sourceTree = "<group>"; };
+		A5959A1D1F39BBBA00916570 /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
+		A5959A1E1F39BBBA00916570 /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
+		A5959A671F3BF8D300916570 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		A5959A691F3BFEA400916570 /* HXIMDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HXIMDemo.entitlements; sourceTree = "<group>"; };
 		A5A2C6731F3836C30011FD18 /* AlertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertManager.h; sourceTree = "<group>"; };
 		A5A2C6741F3836C30011FD18 /* AlertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertManager.m; sourceTree = "<group>"; };
 		A5A2C6771F3840910011FD18 /* AddNewFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewFriendViewController.h; sourceTree = "<group>"; };
 		A5A2C6781F3840910011FD18 /* AddNewFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewFriendViewController.m; sourceTree = "<group>"; };
+		A5A2C67D1F394C670011FD18 /* NewMsgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMsgTableViewController.h; sourceTree = "<group>"; };
+		A5A2C67E1F394C670011FD18 /* NewMsgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMsgTableViewController.m; sourceTree = "<group>"; };
+		A5A2C6851F3951210011FD18 /* MsgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgTableViewCell.h; sourceTree = "<group>"; };
+		A5A2C6861F3951210011FD18 /* MsgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgTableViewCell.m; sourceTree = "<group>"; };
+		A5A2C6871F3951210011FD18 /* MsgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgTableViewCell.xib; sourceTree = "<group>"; };
+		A5A2C68A1F3952B90011FD18 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		A5A2C68B1F3952B90011FD18 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		A5B1449A1F4134230084D86F /* UIViewController+ShowOrHiddenTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ShowOrHiddenTabbar.h"; sourceTree = "<group>"; };
+		A5B1449B1F4134230084D86F /* UIViewController+ShowOrHiddenTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ShowOrHiddenTabbar.m"; sourceTree = "<group>"; };
 		A5C60BED1F315CA100FD65D0 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		A5C60BEE1F315CA100FD65D0 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		A5C60BF01F315CAA00FD65D0 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
@@ -322,9 +340,6 @@
 		A5C60C0F1F317C3600FD65D0 /* RegistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistTableViewCell.h; sourceTree = "<group>"; };
 		A5C60C101F317C3600FD65D0 /* RegistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistTableViewCell.m; sourceTree = "<group>"; };
 		A5C60C111F317C3600FD65D0 /* RegistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistTableViewCell.xib; sourceTree = "<group>"; };
-		A5EE19B01F31CBCC00A4C0B4 /* ChatListCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCustomCell.h; sourceTree = "<group>"; };
-		A5EE19B11F31CBCC00A4C0B4 /* ChatListCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCustomCell.m; sourceTree = "<group>"; };
-		A5EE19B21F31CBCC00A4C0B4 /* ChatListCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListCustomCell.xib; sourceTree = "<group>"; };
 		BA611A56C2FB295D5A83A048 /* Pods-HXIMDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HXIMDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HXIMDemo/Pods-HXIMDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -333,6 +348,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5959A681F3BF8D300916570 /* UserNotifications.framework in Frameworks */,
 				A5C60C081F31769C00FD65D0 /* HyphenateLite.framework in Frameworks */,
 				A53E14EF1F31B2AD0083E06F /* libopencore-amrwb.a in Frameworks */,
 				A53E14EE1F31B2AD0083E06F /* libopencore-amrnb.a in Frameworks */,
@@ -772,6 +788,7 @@
 		A580BD861F2AC4020050F3E2 /* HXIMDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A5959A691F3BFEA400916570 /* HXIMDemo.entitlements */,
 				A53E14481F31B2AD0083E06F /* EaseUI */,
 				A5C60C051F31769000FD65D0 /* HyphenateSDK */,
 				A5C60C0B1F3176CA00FD65D0 /* ManagerHelper */,
@@ -783,6 +800,8 @@
 				A580BD8B1F2AC4020050F3E2 /* AppDelegate.m */,
 				A580BD8D1F2AC4020050F3E2 /* ViewController.h */,
 				A580BD8E1F2AC4020050F3E2 /* ViewController.m */,
+				A5B1449A1F4134230084D86F /* UIViewController+ShowOrHiddenTabbar.h */,
+				A5B1449B1F4134230084D86F /* UIViewController+ShowOrHiddenTabbar.m */,
 				A5398F9D1F3195FB002D1DB9 /* GenericClasses */,
 				A580BDBA1F2ACE6B0050F3E2 /* PrefixHeader.pch */,
 				A580BD901F2AC4020050F3E2 /* Main.storyboard */,
@@ -820,6 +839,15 @@
 			path = HXIMDemoUITests;
 			sourceTree = "<group>";
 		};
+		A5959A1C1F39BB7100916570 /* 会话详情页 */ = {
+			isa = PBXGroup;
+			children = (
+				A5959A1D1F39BBBA00916570 /* ChatDetailViewController.h */,
+				A5959A1E1F39BBBA00916570 /* ChatDetailViewController.m */,
+			);
+			name = "会话详情页";
+			sourceTree = "<group>";
+		};
 		A5C60BEC1F315C8600FD65D0 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,7 +861,6 @@
 		A5C60BF21F31613800FD65D0 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				A5EE19AF1F31CB3200A4C0B4 /* ChatListCustomCell */,
 				A5C60BF31F31617400FD65D0 /* LoginTableViewCell.h */,
 				A5C60BF41F31617400FD65D0 /* LoginTableViewCell.m */,
 				A5C60BF51F31617400FD65D0 /* LoginTableViewCell.xib */,
@@ -843,6 +870,9 @@
 				A5398FB51F31A897002D1DB9 /* ChatCustomTableViewCell.h */,
 				A5398FB61F31A897002D1DB9 /* ChatCustomTableViewCell.m */,
 				A5398FB71F31A897002D1DB9 /* ChatCustomTableViewCell.xib */,
+				A5A2C6851F3951210011FD18 /* MsgTableViewCell.h */,
+				A5A2C6861F3951210011FD18 /* MsgTableViewCell.m */,
+				A5A2C6871F3951210011FD18 /* MsgTableViewCell.xib */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -850,6 +880,7 @@
 		A5C60BF91F31629300FD65D0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A5959A1C1F39BB7100916570 /* 会话详情页 */,
 				A5398F9E1F319735002D1DB9 /* Homepages */,
 				A5398FAB1F31990C002D1DB9 /* BasicViewControllers */,
 				A5C60BFA1F3162A900FD65D0 /* LoginTableViewController.h */,
@@ -858,6 +889,10 @@
 				A5C60C031F316D7200FD65D0 /* RegistTableViewController.m */,
 				A5A2C6771F3840910011FD18 /* AddNewFriendViewController.h */,
 				A5A2C6781F3840910011FD18 /* AddNewFriendViewController.m */,
+				A5A2C67D1F394C670011FD18 /* NewMsgTableViewController.h */,
+				A5A2C67E1F394C670011FD18 /* NewMsgTableViewController.m */,
+				A5A2C68A1F3952B90011FD18 /* TestViewController.h */,
+				A5A2C68B1F3952B90011FD18 /* TestViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -890,19 +925,10 @@
 			name = ManagerHelper;
 			sourceTree = "<group>";
 		};
-		A5EE19AF1F31CB3200A4C0B4 /* ChatListCustomCell */ = {
-			isa = PBXGroup;
-			children = (
-				A5EE19B01F31CBCC00A4C0B4 /* ChatListCustomCell.h */,
-				A5EE19B11F31CBCC00A4C0B4 /* ChatListCustomCell.m */,
-				A5EE19B21F31CBCC00A4C0B4 /* ChatListCustomCell.xib */,
-			);
-			name = ChatListCustomCell;
-			sourceTree = "<group>";
-		};
 		A6BDE8EA5C6D14DC730F85C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5959A671F3BF8D300916570 /* UserNotifications.framework */,
 				82DC21A97A5917AFCF785E49 /* libPods-HXIMDemo.a */,
 			);
 			name = Frameworks;
@@ -981,6 +1007,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = MGD3VP4N9L;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A580BD9C1F2AC4020050F3E2 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -1022,7 +1053,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5398FB91F31A897002D1DB9 /* ChatCustomTableViewCell.xib in Resources */,
-				A5EE19B41F31CBCC00A4C0B4 /* ChatListCustomCell.xib in Resources */,
 				A53E151E1F31B2AD0083E06F /* EaseUIResource.bundle in Resources */,
 				A580BD971F2AC4020050F3E2 /* LaunchScreen.storyboard in Resources */,
 				A5C60C131F317C3600FD65D0 /* RegistTableViewCell.xib in Resources */,
@@ -1030,6 +1060,7 @@
 				A5C60BF71F31617400FD65D0 /* LoginTableViewCell.xib in Resources */,
 				A5C60BF11F315CAA00FD65D0 /* LoginView.xib in Resources */,
 				A580BD921F2AC4020050F3E2 /* Main.storyboard in Resources */,
+				A5A2C6891F3951210011FD18 /* MsgTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,7 +1160,6 @@
 				A53E150E1F31B2AD0083E06F /* EaseBubbleView+Gif.m in Sources */,
 				A53E150B1F31B2AD0083E06F /* EaseMessageCell.m in Sources */,
 				A53E14F31F31B2AD0083E06F /* EaseUserModel.m in Sources */,
-				A5EE19B31F31CBCC00A4C0B4 /* ChatListCustomCell.m in Sources */,
 				A53E15081F31B2AD0083E06F /* EaseUserCell.m in Sources */,
 				A5398FB11F31995D002D1DB9 /* HomeTabBarController.m in Sources */,
 				A53E14F71F31B2AD0083E06F /* UIImage+Resource.m in Sources */,
@@ -1137,6 +1167,7 @@
 				A53E14FD1F31B2AD0083E06F /* EaseEmoji.m in Sources */,
 				A53E15181F31B2AD0083E06F /* EaseTextView.m in Sources */,
 				A53E151B1F31B2AD0083E06F /* EaseChatBarMoreView.m in Sources */,
+				A5B1449C1F4134230084D86F /* UIViewController+ShowOrHiddenTabbar.m in Sources */,
 				A53E151A1F31B2AD0083E06F /* EaseFacialView.m in Sources */,
 				A53E15191F31B2AD0083E06F /* EaseFaceView.m in Sources */,
 				A53E151C1F31B2AD0083E06F /* EaseRecordView.m in Sources */,
@@ -1166,9 +1197,12 @@
 				A53E14E81F31B2AD0083E06F /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				A53E14F61F31B2AD0083E06F /* NSString+Valid.m in Sources */,
 				A53E14FA1F31B2AD0083E06F /* EaseChineseToPinyin.m in Sources */,
+				A5A2C67F1F394C670011FD18 /* NewMsgTableViewController.m in Sources */,
 				A53E15151F31B2AD0083E06F /* EaseChatToolbar.m in Sources */,
 				A53E14F91F31B2AD0083E06F /* UIViewController+HUD.m in Sources */,
+				A5A2C68C1F3952B90011FD18 /* TestViewController.m in Sources */,
 				A53E14FB1F31B2AD0083E06F /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
+				A5959A1F1F39BBBA00916570 /* ChatDetailViewController.m in Sources */,
 				A53E151D1F31B2AD0083E06F /* EaseConversationCell.m in Sources */,
 				A53E14E71F31B2AD0083E06F /* EMCDDeviceManager+Microphone.m in Sources */,
 				A53E150C1F31B2AD0083E06F /* EaseMessageTimeCell.m in Sources */,
@@ -1178,6 +1212,7 @@
 				A5A2C6751F3836C30011FD18 /* AlertManager.m in Sources */,
 				A53E14F11F31B2AD0083E06F /* EaseConversationModel.m in Sources */,
 				A53E15021F31B2AD0083E06F /* EaseConversationListViewController.m in Sources */,
+				A5A2C6881F3951210011FD18 /* MsgTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1327,6 +1362,7 @@
 			baseConfigurationReference = BA611A56C2FB295D5A83A048 /* Pods-HXIMDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HXIMDemo/HXIMDemo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MGD3VP4N9L;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1336,6 +1372,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = HXIMDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1358,6 +1395,7 @@
 			baseConfigurationReference = 93658C9F2087BA01E33600CB /* Pods-HXIMDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HXIMDemo/HXIMDemo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = MGD3VP4N9L;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1367,6 +1405,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = HXIMDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

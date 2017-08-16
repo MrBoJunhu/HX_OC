@@ -40,5 +40,4 @@
 #define HXDidRecivedNewMessage @"hx_receiveNewMessage"
 
 
-
 #endif /* ConfigurationFile_h */

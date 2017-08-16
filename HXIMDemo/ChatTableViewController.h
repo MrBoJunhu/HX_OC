@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatTableViewController : EaseConversationListViewController
+//会话列表基础类 EaseConversationListViewController
+
+@interface ChatTableViewController : EaseConversationListViewController<EMChatManagerDelegate,EMGroupManagerDelegate>
+
 
 @end

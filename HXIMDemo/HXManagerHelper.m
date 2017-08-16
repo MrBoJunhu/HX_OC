@@ -31,8 +31,9 @@
 @property (nonatomic, copy) completeFaile faileBlock;
 
 
-
+//好友列表
 @property (nonatomic, copy) contactsListBlock contactsListBlock;
+
 
 @property (nonatomic, assign) HXServiceType hxServiceType;
 
@@ -54,6 +55,12 @@
     
 }
 
+- (void)clearMsg{
+    
+    self.addAUsername = nil;
+    self.addAMessage = nil;
+}
+
 - (EMClient *)emClient{
     
     if (!_emClient) {
@@ -72,8 +79,9 @@
     return _SDKHelper;
 }
 
-- (void)cofigurateLocalHXService {
-    
+#pragma mark - 环信配置
+- (void)cofigurateLocalHXService:(UIApplication *)application {
+
     NSString *hxAppKey = @"";
     NSString *hxAPSCertName = @"";
     
@@ -94,21 +102,49 @@
     
     EMOptions *options = [EMOptions optionsWithAppkey:HXApp_Key_dev];
     
-    [self.emClient initializeSDKWithOptions:options];
+    // 配置APNs使用的推送证书
+    options.apnsCertName = self.managerHXCerName;
     
+    [self.emClient initializeSDKWithOptions:options];
+
+    
+        
+    //设置推送昵称
+    [self.emClient setApnsNickname:@"环信测试应用"];
+    
+    EMPushOptions *pushOptions = self.emClient.pushOptions;
+    
+    // 设置推送显示的样式 : 显示消息详情
+    pushOptions.displayStyle = EMPushDisplayStyleSimpleBanner;
+    
+    //更新推送配置到服务器
+    [self.emClient updatePushNotificationOptionsToServerWithCompletion:^(EMError *aError) {
+        
+        if (!aError) {
+            
+            DebugLog(@"更新推送到服务器成功!");
+            
+        }else{
+            
+            DebugLog(@"更新配置到服务器失败");
+            
+        }
+        
+    }];
     
     //添加回调监听代理
     [self.emClient addDelegate:self delegateQueue:nil];
     
     //注册消息回调 EMChatManagerDelegate
+    [self.emClient.chatManager removeDelegate:self];
     [self.emClient.chatManager addDelegate:self delegateQueue:nil];
-
     
-    
-    //添加好友回调
+    //添加好友回调监听
     [self.emClient.contactManager addDelegate:self delegateQueue:nil];
     
 }
+
+#pragma mark - 注册环信
 
 
 - (void)registHXServiceWithUsername:(NSString *)username password:(NSString *)password registSuccess:(registSuccess)success registFaile:(registFaile)faile{
@@ -156,7 +192,7 @@
            
             //控制台是否输出log, 默认为NO
             [weakself.emClient.options enableConsoleLog];
-
+            
             weakself.loginSuccessBlock(username);
             
         }else{
@@ -170,6 +206,7 @@
     
 }
 
+#pragma mark - 退出登录
 - (void)existHXServiceSuccess:(logoutSuccess)success faile:(logoutSuccess)faile{
     
     self.logoutSuccessBlock = success;
@@ -199,6 +236,7 @@
     
 }
 
+#pragma mark - 发送添加好友请求
 - (void)addNewFriendWithUsername:(NSString *)username success:(sendAddNewsSuccess)success faile:(sendAddNewsFaile)faile {
     
     self.sendAddSuccessBlock = success;
@@ -220,6 +258,7 @@
     }];
 }
 
+#pragma mark - 同意新的添加好友申请
 - (void)agreeAddNewFriendWithUsername:(NSString *)username success:(completeSuccess)success faile:(completeFaile)faile{
     
     self.successBlock = success;
@@ -242,7 +281,7 @@
         
     }];
 }
-
+#pragma mark - 拒绝添加好友
 - (void)disagreeAddNewFriendWithUsername:(NSString *)username success:(completeSuccess)success faile:(completeFaile)faile {
     
     self.successBlock = success;
@@ -266,7 +305,7 @@
     }];
     
 }
-
+#pragma mark - 删除好友
 - (void)deleteFriendWithUsername:(NSString *)username success:(completeSuccess)success faile:(completeFaile)faile{
     
     self.successBlock = success;
@@ -289,6 +328,7 @@
     }];
 }
 
+#pragma mark - 从服务器获取好友列表
 - (void)getContactsListFromService:(contactsListBlock)contactsList faile:(completeFaile)faile{
     
     self.contactsListBlock = contactsList;
@@ -300,6 +340,7 @@
        
         if (!aError) {
             DebugLog(@"获取好友列表成功!");
+            DebugLog(@"好友列表:\n %@", aList);
             weakself.contactsListBlock(aList);
         }else{
             DebugLog(@"获取好友列表失败");
@@ -312,6 +353,8 @@
 //    [self.emClient.contactManager getContacts];
     
 }
+
+#pragma mark - 删除会话
 
 - (void)deleteChatWithConversationId:(NSString *)ConversationId success:(completeSuccess)success  faile:(completeFaile)faile {
     
@@ -336,8 +379,6 @@
     }];
     
 }
-
-
 
 
 
@@ -447,6 +488,8 @@
     
 }
 
+#pragma mark - 好友管理
+
 #pragma mark - EMContactManagerDelegate
 
 /*!
@@ -459,6 +502,37 @@
                                 message:(NSString *)aMessage{
     
     DebugLog(@"收到添加好友的申请消息 %@", aMessage);
+    
+    self.addAUsername  = aUsername;
+    
+    self.addAMessage = aMessage;
+}
+
+
+/*!
+ @method
+ @brief 获取好友列表成功时的回调
+ @param buddyList 好友列表
+ @param error     错误信息
+ */
+- (void)didFetchedBuddyList:(NSArray *)buddyList
+                      error:(EMError *)error{
+    
+    DebugLog(@"获取到好友列表:\n %@", buddyList);
+    
+    
+}
+
+/*!
+ @method
+ @brief 接收到好友请求时的通知
+
+ @param username 发起好友请求的用户username
+ @param message  收到好友请求时的say hello消息
+ */
+- (void)didReceiveBuddyRequest:(NSString *)username
+                       message:(NSString *)message{
+
     
     
 }
@@ -479,6 +553,28 @@
 
 
 - (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages {
+    
+    
+}
+
+
+/*!
+ @method
+ @brief 将要接收离线消息的回调
+ */
+- (void)willReceiveOfflineMessages {
+    
+}
+
+/*!
+ @method
+ @brief 离线非透传消息接收完成的回调
+ @discussion
+ @param offlineMessages 接收到的离线列表
+ @result
+ */
+- (void)didFinishedReceiveOfflineMessages {
+    
     
     
 }

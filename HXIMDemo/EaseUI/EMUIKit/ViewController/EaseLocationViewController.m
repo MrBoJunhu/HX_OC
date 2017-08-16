@@ -113,6 +113,7 @@ static EaseLocationViewController *defaultLocation = nil;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated

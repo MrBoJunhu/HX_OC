@@ -92,7 +92,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loadding the view.
     self.view.backgroundColor = [UIColor colorWithRed:248 / 255.0 green:248 / 255.0 blue:248 / 255.0 alpha:1.0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -148,7 +148,6 @@
  @method
  @brief 设置表情
  @discussion 加载默认表情，如果子类实现了dataSource的自定义表情回调，同时会加载自定义表情
- @result
  */
 - (void)setupEmotion
 {
@@ -188,7 +187,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    //隐藏tabbar
+//    [self hiddenTabbar];
     self.isViewDidAppear = YES;
     [[EaseSDKHelper shareHelper] setIsShowingimagePicker:NO];
     
@@ -225,8 +225,7 @@
 /*!
  @method
  @brief 加入聊天室
- @discussion
- @result
+
  */
 - (void)joinChatroom:(NSString *)chatroomId
 {
@@ -1069,6 +1068,8 @@
         if (sendCell == nil) {
             sendCell = [[EaseBaseMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier model:model];
             sendCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            //设置头像圆角
+            sendCell.avatarCornerRadius = 10;
             sendCell.delegate = self;
         }
         
@@ -1245,7 +1246,6 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(messageViewController:didSelectAvatarMessageModel:)]) {
         [_delegate messageViewController:self didSelectAvatarMessageModel:model];
-        
         return;
     }
     

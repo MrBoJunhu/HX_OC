@@ -38,6 +38,7 @@ typedef void(^completeFaile)(NSString *arrorDescription, EMErrorCode errorCode);
 typedef void(^contactsListBlock)(NSArray *userList);
 
 
+
 @interface HXManagerHelper : NSObject
 
 @property (nonatomic, strong) EMClient *emClient;
@@ -45,10 +46,22 @@ typedef void(^contactsListBlock)(NSArray *userList);
 @property (nonatomic, strong) EaseSDKHelper *SDKHelper;
 
 
-
+/**
+ 环信AppKey
+ */
 @property (nonatomic, copy) NSString *managerHXAppKey;
 
+
+/**
+ 推送证书名
+ */
 @property (nonatomic, copy) NSString *managerHXCerName;
+
+
+@property (nonatomic, copy) NSString *addAUsername;
+
+@property (nonatomic, copy) NSString *addAMessage;
+
 
 /**
  环信服务器的连接状态
@@ -59,9 +72,15 @@ typedef void(^contactsListBlock)(NSArray *userList);
 
 
 /**
+ 重置临时变量
+ */
+- (void)clearMsg;
+
+
+/**
  环信配置
  */
-- (void)cofigurateLocalHXService;
+- (void)cofigurateLocalHXService:(UIApplication *)application;
 
 /**
  环信注册
@@ -138,8 +157,6 @@ typedef void(^contactsListBlock)(NSArray *userList);
 - (void)getContactsListFromService:(contactsListBlock)contactsList faile:(completeFaile)faile;
 
 
-
-
 /**
  删除单个会话
  
@@ -148,5 +165,6 @@ typedef void(^contactsListBlock)(NSArray *userList);
  @param faile faile description
  */
 - (void)deleteChatWithConversationId:(NSString *)ConversationId success:(completeSuccess)success  faile:(completeFaile)faile;
+
 
 @end

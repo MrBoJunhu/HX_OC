@@ -81,6 +81,7 @@
     // Configure the cell...
     if (cell == nil) {
         cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.avatarView.imageCornerRadius = 15;
     }
     
     if (indexPath.section == 0) {

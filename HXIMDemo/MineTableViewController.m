@@ -8,6 +8,8 @@
 
 #import "MineTableViewController.h"
 #import "LoginTableViewController.h"
+#import "NewMsgTableViewController.h"
+
 @interface MineTableViewController ()
 
 @end
@@ -19,6 +21,8 @@
     [super viewDidLoad];
     
     self.title = @"我的";
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"退出登录" style:UIBarButtonItemStylePlain target:self action:@selector(existHXAction:)];
     
@@ -44,6 +48,8 @@
 - (void)viewWillAppear:(BOOL)animated {
    
     [super viewWillAppear:animated];
+    
+    [self showTabbar];
     
     [self.tableView reloadData];
     
@@ -82,7 +88,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 3;
+    return 5;
     
 }
 
@@ -149,6 +155,9 @@
             subTitle = @"已关闭";
             
         }
+    }else if (row == 4){
+        title = @"好友申请";
+        subTitle = @"查看更多";
     }
     
     cell.textLabel.text = title;
@@ -165,6 +174,21 @@
     return 60;
     
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSUInteger row = indexPath.row;
+    
+    if (row == 4) {
+        
+        NewMsgTableViewController *msgVC = [[NewMsgTableViewController alloc] init];
+
+        [self.navigationController pushViewController:msgVC animated:YES];
+
+    }
+    
+}
+
 
 - (void)dealloc {
     

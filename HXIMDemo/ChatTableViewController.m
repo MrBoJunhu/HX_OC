@@ -8,9 +8,17 @@
 
 #import "ChatTableViewController.h"
 
-#import "ChatListCustomCell.h"
+#import "EaseEmotionEscape.h"
+#import "EaseConversationCell.h"
+#import "EaseConvertToCommonEmoticonsHelper.h"
+#import "EaseMessageViewController.h"
+#import "NSDate+Category.h"
+#import "EaseLocalDefine.h"
 
-@interface ChatTableViewController ()<EMChatManagerDelegate,EMGroupManagerDelegate,EaseConversationListViewControllerDataSource>
+#import "ChatDetailViewController.h"
+
+@interface ChatTableViewController ()
+
 
 @property (nonatomic, strong) NSMutableArray *msgArray;
 
@@ -30,6 +38,8 @@
  
     [super viewWillAppear:animated];
     
+    [self showTabbar];
+    
     //首次进入加载数据
     [self tableViewDidTriggerHeaderRefresh];
     
@@ -39,9 +49,7 @@
    
     [super viewWillDisappear:animated];
     
-    self.hidesBottomBarWhenPushed = NO;
 }
-
 
 - (void)viewDidLoad {
     
@@ -51,6 +59,8 @@
     
     self.showRefreshHeader = YES;
     
+    self.delegate = self;
+    
     self.dataSource = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reladNewMessage) name:HXDidRecivedNewMessage object:nil];
@@ -58,136 +68,23 @@
 }
 
 - (void)reladNewMessage {
-
+   
     [self.tableView reloadData];
     
 }
 
 
 
-- (void)tableViewDidTriggerFooterRefresh{
+- (void)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
+            didSelectConversationModel:(id<IConversationModel>)conversationModel{
     
+    ChatDetailViewController *detailVC = [[ChatDetailViewController alloc] initWithConversationChatter:conversationModel.conversation.conversationId conversationType:EMConversationTypeChat];
+  
+    detailVC.title = conversationModel.title;
     
-}
-
-
-/*!
- @method
- @brief 获取最后一条消息显示的内容
- @discussion 用户根据conversationModel实现,实现自定义会话中最后一条消息文案的显示内容
- @param conversationListViewController 当前会话列表视图
- @param conversationModel 会话模型
- @result 返回用户最后一条消息显示的内容
- */
-- (NSString *)conversationListViewController:(EaseConversationListViewController *)conversationListViewController latestMessageTitleForConversationModel:(id<IConversationModel>)conversationModel{
-    
-    NSString *lastestMsgTitle = @"";
-    
-    EMMessage *lastMsg = [conversationModel.conversation latestMessage];
-    
-    if (lastMsg) {
-        
-        EMMessageBody *msgBody = lastMsg.body;
-        
-        switch (msgBody.type) {
-            case EMMessageBodyTypeImage:
-            {
-                //图片消息
-                
-            }
-                break;
-            case EMMessageBodyTypeText:{
-                //文字消息
-                
-                // 表情映射
-                NSString *didReceiveText = [EaseConvertToCommonEmoticonsHelper convertToSystemEmoticons:((EMTextMessageBody *)msgBody).text];
-                
-                lastestMsgTitle = didReceiveText;
-                
-                if ([lastMsg.ext objectForKey:MESSAGE_ATTR_IS_BIG_EXPRESSION]) {
-                    lastestMsgTitle = @"[动画表情]";
-                }
-                
-            }
-                break;
-            case EMMessageBodyTypeVoice:{
-               
-                lastestMsgTitle = NSLocalizedString(@"message.voice1", @"[voice]");
-            
-            } break;
-            
-            case EMMessageBodyTypeLocation: {
-            
-                lastestMsgTitle = NSLocalizedString(@"message.location1", @"[location]");
-            
-            }
-                break;
-            
-            case EMMessageBodyTypeVideo: {
-            
-                lastestMsgTitle = NSLocalizedString(@"message.video1", @"[video]");
-            }
-                break;
-            case EMMessageBodyTypeFile: {
-               
-                lastestMsgTitle = NSLocalizedString(@"message.file1", @"[file]");
-            
-            }
-                break;
-            
-            default:
-                break;
-       
-        }
-    
-    }
-    
-    [self.msgArray addObject:lastestMsgTitle];
-    
-    return lastestMsgTitle;
+    [self.navigationController pushViewController:detailVC animated:YES];
     
 }
-
-
-//最后一条消息展示时间样例
-
-- (NSString *)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
-       latestMessageTimeForConversationModel:(id<IConversationModel>)conversationModel {
-   
-    NSString *latestMessageTime = @"";
-    
-    EMMessage *lastMessage = [conversationModel.conversation latestMessage];;
-    
-    if (lastMessage) {
-    
-        latestMessageTime = [NSDate formattedTimeFromTimeInterval:lastMessage.timestamp];
-    
-    }
-    
-    return latestMessageTime;
-
-}
-
-
-/*!
- @method
- @brief 构建实现协议IConversationModel的model
- @discussion 用户可以创建实现协议IConversationModel的自定义conversationModel对象，按照业务需要设置属性值
- @param conversationListViewController 当前会话列表视图
- @param conversation 会话对象
- @result 返回实现协议IConversationModel的model对象
- */
-//- (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
-//                                    modelForConversation:(EMConversation *)conversation {
-//    
-//    return @"";
-//
-//}
-
-
-
-
-
 
 
 - (void)dealloc{
